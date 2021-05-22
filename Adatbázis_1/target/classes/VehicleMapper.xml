@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.VehicleMapper">
+    <!--<resultMap id = "result" type = "toDoItem">
+        <result property = "id" column = "ID"/>
+        <result property = "text" column = "NAME"/>
+    </resultMap>-->
+
+    <select id="selectAllVehicle" resultType="vehicle">
+        SELECT * FROM Vehicle
+    </select>
+
+    <select id="selectVehicle" resultType="vehicle">
+        SELECT * FROM Vehicle WHERE id = #{id}
+    </select>
+
+    <insert id="insertVehicle" parameterType="vehicle" keyProperty="id">
+        INSERT INTO Vehicle (id, brand, type, vintage) VALUES (#{id}, #{brand}, #{type}, #{vintage})
+    </insert>
+
+    <update id="updateVehicle" parameterType="vehicle">
+        UPDATE Vehicle SET brand = #{brand}, type = #{type}, vintage = #{vintage} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteVehicle" parameterType="String">
+        DELETE FROM Vehicle WHERE id = #{id}
+    </delete>
+</mapper>
